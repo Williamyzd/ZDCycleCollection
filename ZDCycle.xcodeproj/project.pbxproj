@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		3D9EE08A1C945CF2000B8A47 /* ZDCycleDOC */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3D9EE08D1C945CF2000B8A47 /* Build configuration list for PBXAggregateTarget "ZDCycleDOC" */;
+			buildPhases = (
+				3D9EE0921C945E21000B8A47 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = ZDCycleDOC;
+			productName = ZDCycleDOC;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3DD9038F1C8D5F4C008326E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9038E1C8D5F4C008326E5 /* main.m */; };
 		3DD903921C8D5F4C008326E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD903911C8D5F4C008326E5 /* AppDelegate.m */; };
@@ -333,9 +347,12 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = william;
 				TargetAttributes = {
+					3D9EE08A1C945CF2000B8A47 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					3DD903891C8D5F4C008326E5 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 3VDM289P73;
+						DevelopmentTeam = 6R6ATH2M3U;
 					};
 					3DD903A21C8D5F4C008326E5 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -363,6 +380,7 @@
 				3DD903891C8D5F4C008326E5 /* ZDCycle */,
 				3DD903A21C8D5F4C008326E5 /* ZDCycleTests */,
 				3DD903AD1C8D5F4C008326E5 /* ZDCycleUITests */,
+				3D9EE08A1C945CF2000B8A47 /* ZDCycleDOC */,
 			);
 		};
 /* End PBXProject section */
@@ -397,6 +415,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D9EE0921C945E21000B8A47 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Williamyzd\";\ncompanyID=\"com.Williamyzd\";\ncompanyURL=\"https://github.com/Williamyzd/\";\ntarget=\"iOS\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n\n\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3DD903861C8D5F4C008326E5 /* Sources */ = {
@@ -478,6 +512,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3D9EE08B1C945CF2000B8A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3D9EE08C1C945CF2000B8A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		3DD903B51C8D5F4C008326E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -567,7 +615,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ZDCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.trs.ZDCycle;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.williamyzd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -579,7 +627,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ZDCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.trs.ZDCycle;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.williamyzd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -635,6 +683,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3D9EE08D1C945CF2000B8A47 /* Build configuration list for PBXAggregateTarget "ZDCycleDOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9EE08B1C945CF2000B8A47 /* Debug */,
+				3D9EE08C1C945CF2000B8A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3DD903851C8D5F4C008326E5 /* Build configuration list for PBXProject "ZDCycle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

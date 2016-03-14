@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
+            timestampString = "479642996.476744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
+            timestampString = "479642996.476744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
             <Locations>
@@ -73,13 +73,13 @@
                   symbolName = "-[ZDCycleCollection collectionView:cellForItemAtIndexPath:]"
                   moduleName = "ZDCycle"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/william/Documents/Personnal/git/ZDCycle/ZDCycleCollection/ZDCycleCollection.m"
-                  timestampString = "479119120.429207"
+                  urlString = "file:///Users/william/ZDCycleCollection/ZDCycleCollection/ZDCycleCollection.m"
+                  timestampString = "479642997.490569"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "232">
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "180">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -88,13 +88,13 @@
                   symbolName = "-[ZDCycleCollection collectionView:cellForItemAtIndexPath:]"
                   moduleName = "ZDCycle"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/william/Documents/Personnal/git/ZDCycle/ZDCycleCollection/ZDCycleCollection.m"
-                  timestampString = "479119120.429388"
+                  urlString = "file:///Users/william/ZDCycleCollection/ZDCycleCollection/ZDCycleCollection.m"
+                  timestampString = "479642997.491015"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "250">
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "188">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -106,43 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
+            timestampString = "479642996.476744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZDCycleCollection/ZDCycleCollection.m"
-            timestampString = "479121576.864461"
+            timestampString = "479642996.476744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>

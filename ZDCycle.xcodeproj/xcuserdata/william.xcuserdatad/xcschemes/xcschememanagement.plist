@@ -9,9 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ZDCycleDOC copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>ZDCycleDOC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3D9EE08A1C945CF2000B8A47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D9EE08E1C945DDC000B8A47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3DD903891C8D5F4C008326E5</key>
 		<dict>
 			<key>primary</key>

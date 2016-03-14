@@ -64,7 +64,7 @@
     return self;
 }
 
-    //图片等比处理
+    ///图片等比处理
 - (CGSize)reSetImageSize:(CGSize)size{
     if(size.width == 0 || size.height == 0)
             return CGSizeZero;
@@ -100,7 +100,7 @@
     
 }
 
-//单击退出
+///单击退出
 - (void)singleGuestureJust{
     //    [self dismissViewControllerAnimated:YES completion:Nil];
     NSLog(@"单击");
@@ -109,7 +109,7 @@
     }
 }
 
-//双击缩放
+///双击缩放
 - (void)doubleGuestureJust:(UIGestureRecognizer*)sender{
     NSLog(@"%@",sender.view);
     // 解决手势叠加问题
@@ -140,7 +140,7 @@
     }
     
 }
-//长按保存
+///长按保存
 - (void)longPressJust:(UILongPressGestureRecognizer *)longPress{
     
     if ([longPress state] == UIGestureRecognizerStateBegan) {
@@ -154,6 +154,13 @@
     
     
 }
+/**
+ *  保存成功回调
+ *
+ *  @param image       保存的的图片
+ *  @param error       错误
+ *  @param contextInfo 上下文
+ */
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (!error) {
         NSLog(@"保存成功");

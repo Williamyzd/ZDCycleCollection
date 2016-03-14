@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/william/Library/Developer/Shared/Documentation/DocSets/com.william.zdcyclection.ZDCycleCtion.docset
+Time: 2016-03-12 13:32:09 +0000

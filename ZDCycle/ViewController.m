@@ -36,7 +36,7 @@
                      @"3.jpg"
                      ];
 
-    ZDCycleCollection *collect = [[ZDCycleCollection alloc] initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionHorizontal data:arr];
+    ZDCycleCollection *collect = [[ZDCycleCollection alloc] initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionHorizontal data:arr isNeedCycle:NO];
     UILabel *alable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2-50, 70, 50, 50)];
     alable.contentMode = UIViewContentModeCenter;
     alable.backgroundColor = [UIColor redColor];
@@ -61,6 +61,9 @@
     [collect setSlectedCurrentPage:^(NSInteger index) {
         NSLog(@"我在大controll打印%zd",index);
     }];
+    
+    //是否设置为循环,默认循环
+    collect.isNeedCycle = NO;
     [self.view addSubview:collect];
 }
 //简单图片
@@ -74,7 +77,7 @@
                      @"3.jpg"
                      ];
     
-    ZDCycleCollection *collect = [[ZDCycleCollection alloc] initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionVertical data:arr];
+    ZDCycleCollection *collect = [[ZDCycleCollection alloc] initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionVertical data:arr isNeedCycle:NO];
     
     //设置联动
     UILabel *alable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2-50, 70, 50, 50)];
