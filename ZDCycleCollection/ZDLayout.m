@@ -20,12 +20,15 @@
     CGFloat marginTop = (self.collectionView.bounds.size.height -self.itemSize.height)/2;
     marginL = marginLeft;
     marginT = marginTop;
-    if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
-        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, marginL,  marginT, marginL);
-
-    }else{
-        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, 0, marginT,0);
-    }
+    self.minimumLineSpacing = marginT;
+    self.minimumInteritemSpacing = marginL;
+    self.collectionView.contentInset =UIEdgeInsetsMake(0  , 0,  0, 0);
+//    if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
+//        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, marginL,  marginT, marginL);
+//
+//    }else{
+//        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, 0, marginT,0);
+//    }
   }
 
 //每个cell对应的属性,frame信息必须实现

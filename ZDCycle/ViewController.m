@@ -29,7 +29,7 @@
     }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.collect jumpToIndex:0];
+    //[self.collect jumpToIndex:0];
 }
 //复杂图片(视图),单击,双击,长按手势等操作
 
@@ -56,7 +56,7 @@
    
     collect.center = self.view.center;
     [self.view addSubview:collect];
-     [collect jumpToIndex:0];
+   //  [collect jumpToIndex:0];
     self.collect = collect;
 
     
