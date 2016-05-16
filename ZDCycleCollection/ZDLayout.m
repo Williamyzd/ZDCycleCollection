@@ -21,10 +21,10 @@
     marginL = marginLeft;
     marginT = marginTop;
     if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
-        self.collectionView.contentInset =UIEdgeInsetsMake( 0, marginL,  0, marginL);
+        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, marginL,  marginT, marginL);
 
     }else{
-        self.collectionView.contentInset =UIEdgeInsetsMake( marginTop, 0, marginT,0 );
+        self.collectionView.contentInset =UIEdgeInsetsMake( marginT, 0, marginT,0);
     }
   }
 
@@ -34,7 +34,8 @@
     attributes.size = self.itemSize;
     //垂直
     if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-        CGFloat centerY = self.collectionView.bounds.size.height*indexPath.row + self.itemSize.height/2 +marginT;
+        CGFloat centerY = self.collectionView.bounds.size.height*indexPath.row + self.itemSize.height/2 + marginT;
+        
         attributes.center = CGPointMake(CGRectGetWidth(self.collectionView.frame) / 2, centerY);
         //横向
     } else {
@@ -60,7 +61,7 @@
 - (CGSize)collectionViewContentSize {
     NSInteger cellCount = [self.collectionView numberOfItemsInSection:0];
     if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-        return CGSizeMake(CGRectGetWidth(self.collectionView.frame), cellCount * self.collectionView.bounds.size.height);
+        return CGSizeMake(self.collectionView.bounds.size.width, cellCount * self.collectionView.bounds.size.height);
     }else{
         return CGSizeMake(cellCount*self.collectionView.bounds.size.width, 0);
     }

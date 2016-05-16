@@ -12,8 +12,18 @@
 
 static NSString *reusedId = @"SycleCell";
 @interface ZDCycleCollection ()
-@property (nonatomic, assign)CGFloat itemWidth;
+/*!
+ *  cell的宽度
+ */
+//@property (nonatomic, assign)CGFloat itemWidth;
+/*!
+ *  cell的大小
+ */
 @property (nonatomic, assign) CGSize itemsize;
+/*!
+ *  是否需要循环,默认是需要
+ */
+@property (nonatomic, assign)BOOL  isNeedCycle;
 
 @end
 @implementation ZDCycleCollection
@@ -21,13 +31,20 @@ static NSString *reusedId = @"SycleCell";
 #pragma mark - /*************************初始化***************************/
 - (instancetype)initWithFrame:(CGRect)frame itemsize:(CGSize)itemsize direction:(UICollectionViewScrollDirection )scrollDrection data:(NSArray*)data isNeedCycle:(BOOL)isNeedCycle{
     //绑定layout
+    CGSize ajustSize;
     ZDLayout *layout = [[ZDLayout alloc] init];
-    layout.itemSize = itemsize;
+    if (scrollDrection ==UICollectionViewScrollDirectionHorizontal) {
+      ajustSize = CGSizeMake(frame.size.width, itemsize.height);
+        
+    }else{
+       ajustSize = CGSizeMake(itemsize.width, frame.size.height);
+    }
+
+    layout.itemSize = ajustSize;
     layout.scrollDirection = scrollDrection;
     self = [super initWithFrame:frame collectionViewLayout:layout];
-    self.itemWidth = itemsize.width;
-    self.itemsize = itemsize;
-    self.bounces = NO;
+    self.itemsize = ajustSize;
+       self.bounces = NO;
     self.scrollDirection= scrollDrection;
     
     //设置属性
@@ -49,7 +66,8 @@ static NSString *reusedId = @"SycleCell";
     // 偏移到1,仍然是第一张图片
     if (self.isNeedCycle) {
         NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
-        [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+       // [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        [self jumpToIndex:0];
         NSLog(@"%zd",self.contentOffset.x);
     }
     
@@ -86,25 +104,8 @@ static NSString *reusedId = @"SycleCell";
         [subView removeFromSuperview];
     }
     
-    //不需要循环
-    if (!self.isNeedCycle) {
-        //对当前的页面所做的联动
-        if (self.currentIndex) {
-            self.currentIndex(indexPath.item);
-        }
-        //自定义当前页面
-        if (self.initCellBlock) {
-            __weak typeof(cell) weakCell = cell;
-            [cell setInitCellBlock:^{
-                self.initCellBlock(weakCell,indexPath.item);
-            }];
-        }else{
-            //默认图片
-            NSString *img =self.data[indexPath.item];
-            [cell initContentWithImageName:img ];
-        }
-    //需要循环
-    }else{
+   //需要循环
+    if (self.isNeedCycle) {
         //1.indexPath 不为首尾时
         
         if (indexPath.item!=0 && indexPath.item!=self.data.count+1) {
@@ -128,7 +129,8 @@ static NSString *reusedId = @"SycleCell";
             
             //2.indexPath 为首时
             
-        }else if (indexPath.item ==0){
+        }
+        else if (indexPath.item ==0){
             //自定义内容
             self.currentPage = self.data.count-1;
             NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
@@ -139,7 +141,7 @@ static NSString *reusedId = @"SycleCell";
                 }];
             }else{
                 //默认图片
-                NSString *img =self.data[indexPath.row-1];
+                NSString *img =self.data[self.data.count-1];
                 [cell initContentWithImageName:img ];
             }
             
@@ -161,17 +163,33 @@ static NSString *reusedId = @"SycleCell";
             }
         }
 
+            //不需要循环
+    }else{
+        //对当前的页面所做的联动
+        if (self.currentIndex) {
+            self.currentIndex(indexPath.item);
+        }
+        //自定义当前页面
+        if (self.initCellBlock) {
+            __weak typeof(cell) weakCell = cell;
+            [cell setInitCellBlock:^{
+                self.initCellBlock(weakCell,indexPath.item);
+            }];
+        }else{
+            //默认图片
+            NSString *img =self.data[indexPath.item];
+            [cell initContentWithImageName:img ];
+        }
+
+       
     }
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     if (self.slectedCurrentPage) {
-        //不需要循环
-        if (!self.isNeedCycle) {
-            self.slectedCurrentPage(indexPath.item);
         //需要循环
-        }else{
+        if (self.isNeedCycle) {
             if (indexPath.item!=0 && indexPath.item!=self.data.count+1) {
                 self.slectedCurrentPage(indexPath.item-1);
             }else if (indexPath.item==0){
@@ -179,7 +197,9 @@ static NSString *reusedId = @"SycleCell";
             }else if (indexPath.item ==self.data.count+1){
                 self.slectedCurrentPage(0);
             }
-
+        //不需要循环
+        }else{
+             self.slectedCurrentPage(indexPath.item);
         }
            }
     
@@ -195,32 +215,34 @@ static NSString *reusedId = @"SycleCell";
 //手动
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     //需要循环时才考虑
-    
+    NSIndexPath *index;
     //水平滚动
     if (self.isNeedCycle) {
         if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
             if (scrollView.contentOffset.x>=scrollView.contentSize.width-self.bounds.size.width ) {
                 
-                NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
+                index = [NSIndexPath indexPathForItem:1 inSection:0];
                 [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 
             }
-            else if (scrollView.contentOffset.x<self.itemWidth) {
+            else if (scrollView.contentOffset.x<self.itemsize.width) {
                 NSIndexPath *index = [NSIndexPath indexPathForItem:self.data.count inSection:0];
-                [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+               [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 
             }
+            
             
         }else{
             //垂直滚动
             if (scrollView.contentOffset.y>=scrollView.contentSize.height-self.bounds.size.height) {
                 
-                NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
+              index = [NSIndexPath indexPathForItem:1 inSection:0];
                 [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                
                 
             }
             else if (scrollView.contentOffset.y<self.itemsize.height) {
-                NSIndexPath *index = [NSIndexPath indexPathForItem:self.data.count inSection:0];
+              index = [NSIndexPath indexPathForItem:self.data.count inSection:0];
                 [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 
             }
@@ -229,18 +251,23 @@ static NSString *reusedId = @"SycleCell";
 
     }
     
+   
+    
+    
     
 }
 
 //跳转方法
 -(void)jumpToIndex:(NSInteger)index{
     NSIndexPath *indexpath;
-    //不需要循环
-    if (!self.isNeedCycle) {
-         indexpath = [NSIndexPath indexPathForItem:index  inSection:0];
     //需要循环
-    }else{
+    if (self.isNeedCycle) {
         indexpath = [NSIndexPath indexPathForItem:(index +1) inSection:0];
+             //不需要循环
+    }else{
+        indexpath = [NSIndexPath indexPathForItem:index  inSection:0];
+
+        
     }
     
     [self scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionNone  animated:NO];

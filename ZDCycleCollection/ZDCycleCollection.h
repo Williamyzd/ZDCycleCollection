@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 @class ZDCycleCell;
 @interface ZDCycleCollection : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
-/*!
- *  是否需要循环,默认是需要
- */
-@property (nonatomic, assign)BOOL  isNeedCycle;
 ///当前页码
 @property (nonatomic,assign)NSInteger currentPage;
 
