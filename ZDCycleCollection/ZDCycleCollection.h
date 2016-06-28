@@ -21,7 +21,7 @@
 ///选中当前页码
 @property(nonatomic, copy) void(^slectedCurrentPage)(NSInteger index);
 
-///数据源,默认为名字为字符串的数组
+///数据源,默认为图片名称名字为字符串的数组,主要作用在于提供有多少个cell
 @property (nonatomic, strong)NSMutableArray *data;
 
 ///滚动方向
