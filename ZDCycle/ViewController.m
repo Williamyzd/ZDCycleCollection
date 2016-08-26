@@ -45,7 +45,7 @@
                      ];
     CGRect aframe = CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height);
     CGSize asize = CGSizeMake(self.view.bounds.size.width-30, aframe.size.height-100);
-    ZDCycleCollection*collect = [[ZDCycleCollection alloc]initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionVertical data:arr isNeedCycle:YES];
+    ZDCycleCollection*collect = [[ZDCycleCollection alloc]initWithFrame:aframe itemsize:asize direction:UICollectionViewScrollDirectionHorizontal data:arr isNeedCycle:YES];
     [collect setInitCellBlock:^(ZDCycleCell *cell, NSInteger index) {
         ZDPicDetailView *imgVC = [[ZDPicDetailView alloc] initWithFrame:cell.bounds imageUrl:arr[index]];
        // imgVC.center = cell.center;
