@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
 s.name         = "ZDCycleCollection"
 s.version      = "0.0.1"
-s.summary      = "一款基于collectionView的轻量级无限轮播框架."
+s.summary      = "一款基于collectionView的轻量级无限轮播框架,可深度自定义当前视图用户操作与跳转逻辑."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
