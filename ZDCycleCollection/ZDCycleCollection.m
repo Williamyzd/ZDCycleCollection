@@ -34,17 +34,17 @@ static NSString *reusedId = @"SycleCell";
     CGSize ajustSize;
     ZDLayout *layout = [[ZDLayout alloc] init];
     if (scrollDrection ==UICollectionViewScrollDirectionHorizontal) {
-      ajustSize = CGSizeMake(frame.size.width, itemsize.height);
+        ajustSize = CGSizeMake(frame.size.width, itemsize.height);
         
     }else{
-       ajustSize = CGSizeMake(itemsize.width, frame.size.height);
+        ajustSize = CGSizeMake(itemsize.width, frame.size.height);
     }
-
+    
     layout.itemSize = ajustSize;
     layout.scrollDirection = scrollDrection;
     self = [super initWithFrame:frame collectionViewLayout:layout];
     self.itemsize = ajustSize;
-       self.bounces = NO;
+    self.bounces = NO;
     self.scrollDirection= scrollDrection;
     
     //设置属性
@@ -65,10 +65,12 @@ static NSString *reusedId = @"SycleCell";
     
     // 偏移到1,仍然是第一张图片
     if (self.isNeedCycle) {
-     
+        NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
+        // [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         [self jumpToIndex:0];
-        NSLog(@"%zd",self.contentOffset.x);
+        NSLog(@"轮播初始化====%f",self.contentOffset.x);
     }
+    
     
     
     return self;
@@ -76,7 +78,7 @@ static NSString *reusedId = @"SycleCell";
 }
 - (void)setData:(NSMutableArray *)data{
     _data = [NSMutableArray arrayWithArray:data];
-
+    
 }
 
 
@@ -95,7 +97,7 @@ static NSString *reusedId = @"SycleCell";
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     ZDCycleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusedId forIndexPath:indexPath];
     
     //消除缓存的影响
@@ -103,16 +105,19 @@ static NSString *reusedId = @"SycleCell";
         [subView removeFromSuperview];
     }
     
-   //需要循环
+    //需要循环
     if (self.isNeedCycle) {
         //1.indexPath 不为首尾时
         
         if (indexPath.item!=0 && indexPath.item!=self.data.count+1) {
-            self.currentPage = indexPath.item-1;
-            NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
-            if (self.currentIndex) {
-                self.currentIndex(indexPath.item-1);
-            }
+            //self.currentPage = indexPath.item-1;
+            // NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
+            //            if (self.currentIndex) {
+            //                dispatch_async(dispatch_get_main_queue(), ^{
+            //                     self.currentIndex(indexPath.item-1);
+            //                });
+            //
+            //            }
             //加载cell内容视图
             //自定义内容
             if (self.initCellBlock) {
@@ -131,8 +136,8 @@ static NSString *reusedId = @"SycleCell";
         }
         else if (indexPath.item ==0){
             //自定义内容
-            self.currentPage = self.data.count-1;
-            NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
+            // self.currentPage = self.data.count-1;
+            //  NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
             if (self.initCellBlock) {
                 __weak typeof(cell) weakCell = cell;
                 [cell setInitCellBlock:^{
@@ -147,8 +152,8 @@ static NSString *reusedId = @"SycleCell";
             //3.indexPath 为尾时
             
         }else if (indexPath.item ==self.data.count+1){
-            self.currentPage = 0;
-            NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
+            // self.currentPage = 0;
+            //NSLog(@"当前实际页码:%zd,抽象页码:%zd",self.currentPage,indexPath.item);
             //自定义内容
             if (self.initCellBlock) {
                 __weak typeof(cell) weakCell = cell;
@@ -161,13 +166,14 @@ static NSString *reusedId = @"SycleCell";
                 [cell initContentWithImageName:img ];
             }
         }
-
-            //不需要循环
+        
+        //不需要循环
     }else{
         //对当前的页面所做的联动
-        if (self.currentIndex) {
-            self.currentIndex(indexPath.item);
-        }
+        //self.currentPage=indexPath.item;
+        //        if (self.currentIndex) {
+        //            self.currentIndex(indexPath.item);
+        //        }
         //自定义当前页面
         if (self.initCellBlock) {
             __weak typeof(cell) weakCell = cell;
@@ -179,9 +185,16 @@ static NSString *reusedId = @"SycleCell";
             NSString *img =self.data[indexPath.item];
             [cell initContentWithImageName:img ];
         }
-
-       
+        
+        
     }
+    //    if (self.currentIndex) {
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            self.currentIndex(self.currentPage);
+    //        });
+    //    }
+    
+    
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -196,64 +209,70 @@ static NSString *reusedId = @"SycleCell";
             }else if (indexPath.item ==self.data.count+1){
                 self.slectedCurrentPage(0);
             }
-        //不需要循环
+            //不需要循环
         }else{
-             self.slectedCurrentPage(indexPath.item);
+            self.slectedCurrentPage(indexPath.item);
         }
-           }
+    }
     
 }
+
 #pragma mark - /*************************scrollview代理方法***************************/
 //将要停止滚动
 //自动
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     [self scrollViewDidEndDecelerating:scrollView];
-     NSLog(@"%zd",self.contentOffset.x);
+    NSLog(@"%zd",self.contentOffset.x);
+    
 }
-
-//手动
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"当前实际页码:%zd---偏移量:%f",self.currentPage,scrollView.contentOffset.x);
+    
     //需要循环时才考虑
-    NSIndexPath *index;
-    //水平滚动
-    if (self.isNeedCycle) {
-        if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
-            if (scrollView.contentOffset.x>=scrollView.contentSize.width-self.bounds.size.width ) {
-                
-                index = [NSIndexPath indexPathForItem:1 inSection:0];
-                [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                
-            }
-            else if (scrollView.contentOffset.x<self.itemsize.width) {
-                NSIndexPath *index = [NSIndexPath indexPathForItem:self.data.count inSection:0];
-               [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                
-            }
-            
-            
-        }else{
-            //垂直滚动
-            if (scrollView.contentOffset.y>=scrollView.contentSize.height-self.bounds.size.height) {
-                
-              index = [NSIndexPath indexPathForItem:1 inSection:0];
-                [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                
-                
-            }
-            else if (scrollView.contentOffset.y<self.itemsize.height) {
-              index = [NSIndexPath indexPathForItem:self.data.count inSection:0];
-                [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                
-            }
-            
-        }
-
+    NSInteger index;
+    if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
+        index= (NSInteger)(scrollView.contentOffset.x/self.itemsize.width) -1;
+    }else{
+        index= (NSInteger)(scrollView.contentOffset.y/self.itemsize.height) -1;
     }
     
-   
+    //水平滚动
+    if (self.isNeedCycle) {
+        if(index==-1)
+        {
+            index = self.data.count-1;
+            [self jumpToIndex:self.data.count-1];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.currentIndex(self.data.count-1);
+            });
+        }
+        else if(index == self.data.count)
+        {
+            index = 0;
+            [self jumpToIndex:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.currentIndex(0);
+            });
+            
+        }
+        else
+        {
+            [self jumpToIndex:index];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.currentIndex(index);
+            });
+        }
+        
+        
+    }
+    self.currentPage=index;
+    if (self.currentIndex) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.currentIndex(index);
+        });
+    }
     
-    
-    
+    NSLog(@"=========:%zd---偏移量:%f",index,scrollView.contentOffset.x);
 }
 
 //跳转方法
@@ -262,10 +281,10 @@ static NSString *reusedId = @"SycleCell";
     //需要循环
     if (self.isNeedCycle) {
         indexpath = [NSIndexPath indexPathForItem:(index +1) inSection:0];
-             //不需要循环
+        //不需要循环
     }else{
         indexpath = [NSIndexPath indexPathForItem:index  inSection:0];
-
+        
         
     }
     

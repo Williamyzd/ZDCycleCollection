@@ -24,8 +24,8 @@
     //[self normalDemo];
     
     // 自定义视图的demo
-    //[self conplexDemo];
-    [self addwebImage];
+    [self conplexDemo];
+    //[self addwebImage];
     }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -38,7 +38,7 @@
  */
 - (void)addwebImage{
     NSArray *arr = @[
-                     @"http://b.hiphotos.baidu.com/album/pic/item/caef76094b36acafe72d0e667cd98d1000e99c5f.jpg?psign=e72d0e667cd98d1001e93901213fb80e7aec54e737d1b867",
+                     @"http://b.hiphotos.baidu.com/album/pic/item/caef76094b36acafe72d0e667cd98d1000e99c5f.jpg",
                      @"http://picm.photophoto.cn/038/047/010/0470100373.jpg",
                      @"http://pic41.nipic.com/20140509/18285693_231156450339_2.jpg",
                      @"http://h.hiphotos.baidu.com/lvpics/w=1000/sign=049d1d655cafa40f3cc6cadd9b54024f/29381f30e924b899de6cd36f68061d950a7bf611.jpg"
