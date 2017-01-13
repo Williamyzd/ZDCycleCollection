@@ -48,15 +48,17 @@
     if (self) {
         __weak typeof(self) weakself = self;
     __weak UIImageView * weakImageV = imgView;
-      [imgView setImageWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-          if(image){
-            CGSize imageSize = [weakself reSetImageSize:image.size ] ;
-            CGPoint center = weakImageV.center;
-            weakImageV.frame = CGRectMake(0, 0, imageSize.width, imageSize.height);
-            weakImageV.center = center;
-        }
-      }];
-    }
+        [imgView sd_setImageWithURL:[NSURL URLWithString:imageUrl]  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if(image){
+                CGSize imageSize = [weakself reSetImageSize:image.size ] ;
+                CGPoint center = weakImageV.center;
+                weakImageV.frame = CGRectMake(0, 0, imageSize.width, imageSize.height);
+                weakImageV.center = center;
+            }
+
+            
+        }];
+         }
     return self;
 }
 - (instancetype)initWithFrame:(CGRect)frame imageName:(NSString *)imageName{

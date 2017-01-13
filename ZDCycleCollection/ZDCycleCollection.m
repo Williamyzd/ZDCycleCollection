@@ -65,8 +65,7 @@ static NSString *reusedId = @"SycleCell";
     
     // 偏移到1,仍然是第一张图片
     if (self.isNeedCycle) {
-        NSIndexPath *index = [NSIndexPath indexPathForItem:1 inSection:0];
-       // [self scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+     
         [self jumpToIndex:0];
         NSLog(@"%zd",self.contentOffset.x);
     }
