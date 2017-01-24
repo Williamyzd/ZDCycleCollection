@@ -231,13 +231,15 @@ static NSString *reusedId = @"SycleCell";
     //需要循环时才考虑
     NSInteger index;
     if (self.scrollDirection ==UICollectionViewScrollDirectionHorizontal) {
-        index= (NSInteger)(scrollView.contentOffset.x/self.itemsize.width) -1;
+        index= (NSInteger)(scrollView.contentOffset.x/self.itemsize.width) ;
     }else{
-        index= (NSInteger)(scrollView.contentOffset.y/self.itemsize.height) -1;
+        index= (NSInteger)(scrollView.contentOffset.y/self.itemsize.height) ;
     }
     
     //水平滚动
     if (self.isNeedCycle) {
+        
+        index--;
         if(index==-1)
         {
             index = self.data.count-1;
@@ -263,16 +265,19 @@ static NSString *reusedId = @"SycleCell";
             });
         }
         
+        self.currentPage=index;
+    }else{
+        self.currentPage=index;
+        if (self.currentIndex) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.currentIndex(index);
+            });
+        }
+        
+        NSLog(@"=========:%zd---偏移量:%f",index,scrollView.contentOffset.x);
         
     }
-    self.currentPage=index;
-    if (self.currentIndex) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.currentIndex(index);
-        });
-    }
     
-    NSLog(@"=========:%zd---偏移量:%f",index,scrollView.contentOffset.x);
 }
 
 //跳转方法
